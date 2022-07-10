@@ -1,0 +1,20 @@
+{
+  "name": "deall-be-test",
+  "version": "1.0.0",
+  "description": "BE Test for usedeall - Julando Omar",
+  "main": "app.js",
+  "scripts": {
+    "start": "nodemon app.js"
+  },
+  "author": "Julando Omar",
+  "license": "ISC",
+  "dependencies": {
+    "bcrypt": "^5.0.1",
+    "dotenv": "^16.0.1",
+    "express": "^4.18.1",
+    "express-validation": "^4.1.0",
+    "jsonwebtoken": "^8.5.1",
+    "mongoose": "^6.4.3",
+    "nodemon": "^2.0.19"
+  }
+}

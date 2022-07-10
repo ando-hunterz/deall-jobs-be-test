@@ -1,0 +1,44 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+    name: node-app
+spec:
+    replicas: 1
+    selector:
+        matchLabels:
+            app: node-app
+    template:
+         metadata:
+             labels:
+                 app: node-app
+         spec:
+             containers:
+                 - name: app
+                   image: be-test/node-app
+                   ports:
+                       - containerPort: 3000
+                   volumeMounts:
+                       - name: env-volume
+                         readOnly: true
+                         mountPath: /app/.env
+                         subPath: .env
+                   imagePullPolicy: Never
+             volumes:
+              - name: env-volume
+                secret:
+                    secretName: nodeapp-secret
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+    name: nodeapp-service
+spec:
+    type: LoadBalancer
+    selector:
+        app: node-app
+    ports:
+        - protocol: TCP
+          port: 3000
+          targetPort: 3000
+
